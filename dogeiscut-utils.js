@@ -1,3 +1,12 @@
+(function(Scratch) {
+  'use strict';
+
+  const vm = Scratch.vm
+
+  if (!Scratch.extensions.unsandboxed) {
+    throw new Error('\'DogeisCut Utils\' must run unsandboxed!');
+  }
+
 class DogeisCutsUtils {
     getInfo() {
       return {
@@ -44,7 +53,12 @@ class DogeisCutsUtils {
                     defaultValue: 0,
                   },
               },
-          }
+          },
+          {
+            opcode: 'log_sprite',
+            blockType: Scratch.BlockType.COMMAND,
+            text: 'log sprite information',
+          },
         ]
       };
     }
@@ -65,6 +79,11 @@ class DogeisCutsUtils {
     min(args) {
         return Math.min(args.ONE, args.TWO)
     }
+
+    log_sprite(args, util) {
+      console.log(util.target)
+    }
   }
   
   Scratch.extensions.register(new DogeisCutsUtils());
+})(Scratch);

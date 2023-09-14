@@ -31,4 +31,4 @@ class SpriteParenting {
     }
   }
   
-  Scratch.extensions.register(new DogeisCutsUtils());
+  Scratch.extensions.register(new SpriteParenting());

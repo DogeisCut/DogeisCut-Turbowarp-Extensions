@@ -1,7 +1,7 @@
 class SpriteParenting {
     getInfo() {
       return {
-        id: 'sprite-parenting',
+        id: 'spriteparenting',
         name: 'Sprite Parenting',
         blocks: [
           {

@@ -65,7 +65,7 @@
       }
     
       parent_sprite(args, util) {
-        util.target.direction += 30
+        
       }
       unparent_sprite(args) {    
       }

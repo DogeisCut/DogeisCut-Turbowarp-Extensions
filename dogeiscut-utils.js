@@ -7,7 +7,11 @@
     throw new Error('\'DogeisCut Utils\' must run unsandboxed!');
   }
 
+  const previousValue = {}
+
 class DogeisCutsUtils {
+    
+
     getInfo() {
       return {
         id: 'dogeiscututils',
@@ -55,17 +59,21 @@ class DogeisCutsUtils {
               },
           },
           {
-            opcode: 'log_sprite',
+            opcode: 'log_util',
             blockType: Scratch.BlockType.COMMAND,
-            text: 'log sprite information',
+            text: 'log util',
           },
         ]
       };
     }
   
-    changed(args) {
-        if (args.ONE != this.previousValue) {
-            this.previousValue = args.ONE;
+    changed(args, util) {
+      let id = String(util.thread.peekStack())
+      if (previousValue[id]==undefined||previousValue[id]==null) {
+        previousValue[id] = false
+      }
+        if (args.ONE !== previousValue[id]) {
+          previousValue[id] = args.ONE;
             return true;
           } else {
             return false;
@@ -80,8 +88,8 @@ class DogeisCutsUtils {
         return Math.min(args.ONE, args.TWO)
     }
 
-    log_sprite(args, util) {
-      console.log(util.target)
+    log_util(args, util) {
+      console.log(util)
     }
   }
   

@@ -14,6 +14,36 @@ class DogeisCutsUtils {
                   defaultValue: "apple",
                 },
               },
+          },
+          {
+            opcode: 'max',
+            blockType: Scratch.BlockType.REPORTER,
+            text: 'max of [ONE] and [TWO]',
+            arguments: {
+                ONE: {
+                  type: Scratch.ArgumentType.NUMBER,
+                  defaultValue: 100,
+                },
+                TWO: {
+                    type: Scratch.ArgumentType.NUMBER,
+                    defaultValue: 0,
+                  },
+              },
+          },
+          {
+            opcode: 'min',
+            blockType: Scratch.BlockType.REPORTER,
+            text: 'min of [ONE] and [TWO]',
+            arguments: {
+                ONE: {
+                  type: Scratch.ArgumentType.NUMBER,
+                  defaultValue: 100,
+                },
+                TWO: {
+                    type: Scratch.ArgumentType.NUMBER,
+                    defaultValue: 0,
+                  },
+              },
           }
         ]
       };
@@ -26,6 +56,14 @@ class DogeisCutsUtils {
           } else {
             return false;
           }      
+    }
+
+    max(args) {
+        return max(args.ONE, args.TWO)
+    }
+
+    min(args) {
+        return min(args.ONE, args.TWO)
     }
   }
   

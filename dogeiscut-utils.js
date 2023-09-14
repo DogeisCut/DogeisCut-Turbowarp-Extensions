@@ -1,4 +1,4 @@
-class DogeisCutsUtils {
+ class DogeisCutsUtils {
     getInfo() {
       return {
         id: 'dogeiscututils',

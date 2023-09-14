@@ -17,6 +17,7 @@
               opcode: 'parent_sprite',
               blockType: Scratch.BlockType.COMMAND,
               text: 'parent sprite [ONE] and [TWO]',
+              filter: [Scratch.TargetType.SPRITE],
               arguments: {
                 ONE: {
                   type: Scratch.ArgumentType.STRING,
@@ -32,6 +33,7 @@
               opcode: 'unparent_sprite',
               blockType: Scratch.BlockType.COMMAND,
               text: 'unparent sprite [ONE] and [TWO]',
+              filter: [Scratch.TargetType.SPRITE],
               arguments: {
                 ONE: {
                   type: Scratch.ArgumentType.STRING,
@@ -47,6 +49,7 @@
               opcode: 'unparent_all',
               blockType: Scratch.BlockType.COMMAND,
               text: 'unparent all sprites from [ONE]',
+              filter: [Scratch.TargetType.SPRITE],
               arguments: {
                 ONE: {
                   type: Scratch.ArgumentType.STRING,

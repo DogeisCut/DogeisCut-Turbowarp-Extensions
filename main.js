@@ -59,11 +59,11 @@ class DogeisCutsUtils {
     }
 
     max(args) {
-        return max(args.ONE, args.TWO)
+        return Math.max(args.ONE, args.TWO)
     }
 
     min(args) {
-        return min(args.ONE, args.TWO)
+        return Math.min(args.ONE, args.TWO)
     }
   }
   

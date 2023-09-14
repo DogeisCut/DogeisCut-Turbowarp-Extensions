@@ -1,21 +1,32 @@
-class HelloWorld {
+class DogeisCutsUtils {
     getInfo() {
       return {
-        id: 'helloworld',
-        name: 'It works!',
+        id: 'dogeiscututils',
+        name: 'DogeisCut\'s Utils',
         blocks: [
           {
-            opcode: 'hello',
-            blockType: Scratch.BlockType.REPORTER,
-            text: 'Hello!'
+            opcode: 'changed',
+            blockType: Scratch.BlockType.BOOLEAN,
+            text: 'changed [ONE]',
+            arguments: {
+                ONE: {
+                  type: Scratch.ArgumentType.STRING,
+                  defaultValue: "apple",
+                },
+              },
           }
         ]
       };
     }
   
-    hello() {
-      return 'World!';
+    changed(args) {
+        if (args.ONE != this.previousValue) {
+            this.previousValue = args.ONE;
+            return true;
+          } else {
+            return false;
+          }      
     }
   }
   
-  Scratch.extensions.register(new HelloWorld());
+  Scratch.extensions.register(new DogeisCutsUtils());

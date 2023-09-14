@@ -9,6 +9,8 @@
 
   const previousValue = {}
 
+  const icon = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAPUExURYlmIf/YAAAAAMqlDgAAAAbidCoAAAAFdFJOU/////8A+7YOUwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAALNJREFUOE+lkAEOxSAIQ/Xr/c/8aa2IG2bJ1iyRlieYlQ6VMk7JrHsWCAJBOz3OUmqt4Q6sewdWQrcB+4gE2CKZDGA26xSw0MuXgKUqTkDQBfhJ1lEVAFusMAewQOEHgKkdS7OPBygKMhi/5AKEEShBANEKpVF6B758C2QEpzwAWV/EHbBQFXVfwXvO6JEgFhMRB4xorY3QdAIoNcbADKCwkkIrB/gs9lIAxFQOBOIATKL3Px/2B9eefxZyAAAAAElFTkSuQmCC"
+
 class DogeisCutsUtils {
     
 
@@ -16,6 +18,8 @@ class DogeisCutsUtils {
       return {
         id: 'dogeiscututils',
         name: 'DogeisCut\'s Utils',
+        menuIconURI: icon,
+        blockIconURI: icon,
         blocks: [
           {
             opcode: 'changed',
@@ -62,6 +66,7 @@ class DogeisCutsUtils {
             opcode: 'log_util',
             blockType: Scratch.BlockType.COMMAND,
             text: 'log util',
+            hideFromPalette: true
           },
         ]
       };

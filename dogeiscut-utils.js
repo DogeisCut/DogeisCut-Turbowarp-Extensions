@@ -32,6 +32,7 @@ class DogeisCutsUtils {
                 },
               },
           },
+          '---',
           {
             opcode: 'max',
             blockType: Scratch.BlockType.REPORTER,

@@ -52,7 +52,7 @@
             {
               opcode: 'unparent_all',
               blockType: Scratch.BlockType.COMMAND,
-              text: 'unparent all sprites from [ONE]',
+              text: 'unparent all sprites from sprite [ONE]',
               filter: [Scratch.TargetType.SPRITE],
               arguments: {
                 ONE: {
@@ -102,11 +102,20 @@
       
     
       parent_sprites(args, util) {
-        
+        let target1 = Scratch.Cast.toString(args.ONE) == 'myself' ? util.target.getId() : 'idk lol';
+        let target2 = Scratch.Cast.toString(args.TWO) == 'myself' ? util.target.getId() : 'idk lol';
+        target1['parentedTo'] = target2
+        target2['children'].push(target1)
       }
       unparent_sprites(args) {    
+        let target1 = Scratch.Cast.toString(args.ONE) == 'myself' ? util.target.getId() : 'idk lol';
+        let target2 = Scratch.Cast.toString(args.TWO) == 'myself' ? util.target.getId() : 'idk lol';
+        //todo: remove the stuff lol
       }
       unparent_all(args) {    
+        let target1 = Scratch.Cast.toString(args.ONE) == 'myself' ? util.target.getId() : 'idk lol';
+        //todo: loop through each child and remove the parented to
+        target2['children'] = ''
       }
     }
     Scratch.extensions.register(new SpriteParenting());

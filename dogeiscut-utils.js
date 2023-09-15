@@ -279,7 +279,7 @@ class DogeisCutsUtils {
           return 'Don\'t you have better blocks to be clicking?';
           break;
         case 2:
-          return 'I assure you that there are 0 use cases for me.';
+          return 'I assure you that there are zero use cases for me.';
           break;
         case 3:
           return 'You\'re giving me false hope that I\'d be useful.';

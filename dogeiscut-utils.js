@@ -62,12 +62,13 @@ class DogeisCutsUtils {
         menuIconURI: icon,
         blockIconURI: iconInUse,
         blocks: [
-          {
+          //Disabling cause aparently it's impossible :(
+          /*{
             func: "disable_icons",
             blockType: Scratch.BlockType.BUTTON,
             text: disableIconsText
           },
-          '---',
+          '---',*/
           {
             opcode: 'changed',
             blockType: Scratch.BlockType.BOOLEAN,

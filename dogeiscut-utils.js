@@ -176,7 +176,8 @@ class DogeisCutsUtils {
             blockType: Scratch.BlockType.COMMAND,
             text: 'reset new number'
           },
-          '---',
+          //This has no purpose and acts strange
+          /*'---',
           {
             opcode: 'null_block',
             blockType: Scratch.BlockType.REPORTER,
@@ -186,7 +187,7 @@ class DogeisCutsUtils {
                 type: null,
               }
             },
-          },
+          },*/
           '---',
           {
             opcode: 'loop_continue',

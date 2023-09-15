@@ -20,7 +20,7 @@
   
   
   function seededRandom(seed) {
-    let x = Math.abs(triangleWave((Math.abs(randomCount)+1)*(35404762.5464353454334+Math.abs(seed))));
+    let x = Math.abs(triangleWave((randomCount+1)*(35404762.5464353454334+Math.abs(seed))));
     return x;
   }
   
@@ -148,13 +148,7 @@ class DogeisCutsUtils {
           {
             opcode: 'reset_seeded_random',
             blockType: Scratch.BlockType.COMMAND,
-            text: 'reset seeded random to [COUNT]',
-            arguments: {
-              COUNT: {
-                type: Scratch.ArgumentType.NUMBER,
-                defaultValue: 0,
-              }
-            },
+            text: 'reset seeded random'
           },
           {
             opcode: 'log_util',
@@ -199,7 +193,7 @@ class DogeisCutsUtils {
     }
 
     reset_seeded_random(args) {
-      randomCount = args.COUNT
+      randomCount = 0
     }
 
     log_util(args, util) {

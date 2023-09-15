@@ -63,7 +63,7 @@ class DogeisCutsUtils {
         blockIconURI: iconInUse,
         blocks: [
           {
-            opcode: 'disable_icons',
+            func: "disable_icons",
             blockType: Scratch.BlockType.BUTTON,
             text: disableIconsText
           },
@@ -327,7 +327,7 @@ class DogeisCutsUtils {
       return
     }
 
-    disable_icons(args) {
+    disable_icons() {
       if (iconsDisabled==true) {
         iconsDisabled = false
         disableIconsText = 'Disable Icons'
@@ -337,6 +337,7 @@ class DogeisCutsUtils {
         disableIconsText = 'Enable Icons'
         iconInUse = null
       }
+      Scratch.vm.extensionManager.refreshBlocks();
     }
   }
   

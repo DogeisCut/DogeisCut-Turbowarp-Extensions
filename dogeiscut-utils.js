@@ -190,6 +190,13 @@ class DogeisCutsUtils {
           },
           '---',
           {
+            opcode: 'delete_sprite',
+            blockType: Scratch.BlockType.COMMAND,
+            text: 'delete this sprite',
+            isTerminal: true
+          },
+          '---',
+          {
             opcode: 'useless',
             blockType: null,
             text: 'useless'
@@ -298,6 +305,11 @@ class DogeisCutsUtils {
 
     loop_break(args) {
       return 'This block must be placed in a loop!'
+    }
+
+    delete_sprite(args, util) {
+      //util.target
+      return
     }
   }
   

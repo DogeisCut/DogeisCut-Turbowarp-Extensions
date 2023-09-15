@@ -272,7 +272,7 @@ class DogeisCutsUtils {
     }
 
     useless(args) {
-      let response = Math.round(Math.random() * 9)
+      let response = Math.round(Math.random() * 10)
       switch (response) {
         case 1:
           return 'Don\'t you have better blocks to be clicking?';
@@ -300,6 +300,9 @@ class DogeisCutsUtils {
           break;
         case 9:
           return 'Stop it!';
+          break;
+        case 10:
+          return 'CURSE YOU DOGEISCUT FOR ADDING ME!!!';
           break;
         default:
           return 'I litterally do nothing.';

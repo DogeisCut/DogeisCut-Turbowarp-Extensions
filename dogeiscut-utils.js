@@ -74,8 +74,9 @@ class DogeisCutsUtils {
             text: '[ONE] changed?',
             arguments: {
                 ONE: {
-                  type: null, //this is on purpose so people actually put stuff in, instead of typing stuff 
                   //sadly it looks a little ugly if someone has addons that change block size
+                  type: null, //this is on purpose so people actually put stuff in, instead of typing stuff 
+                  
                   //type: Scratch.ArgumentType.STRING,
                   //defaultValue: "reporter or bool",
                 },

@@ -177,18 +177,6 @@ class DogeisCutsUtils {
           },
           '---',
           {
-            opcode: 'useless',
-            blockType: null,
-            text: 'useless'
-          },
-          {
-            opcode: 'log_util',
-            blockType: Scratch.BlockType.COMMAND,
-            text: 'log util',
-            hideFromPalette: true
-          },
-          '---',
-          {
             opcode: 'loop_continue',
             blockType: Scratch.BlockType.COMMAND,
             text: 'continue',
@@ -199,6 +187,19 @@ class DogeisCutsUtils {
             blockType: Scratch.BlockType.COMMAND,
             text: 'break',
             isTerminal: true
+          },
+          '---',
+          {
+            opcode: 'useless',
+            blockType: null,
+            text: 'useless'
+          },
+          '---',
+          {
+            opcode: 'log_util',
+            blockType: Scratch.BlockType.COMMAND,
+            text: 'log util',
+            hideFromPalette: true
           },
         ]
       };

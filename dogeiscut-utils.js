@@ -187,6 +187,19 @@ class DogeisCutsUtils {
             text: 'log util',
             hideFromPalette: true
           },
+          '---',
+          {
+            opcode: 'continue',
+            blockType: Scratch.BlockType.COMMAND,
+            text: 'continue',
+            isTerminal: true
+          },
+          {
+            opcode: 'break',
+            blockType: Scratch.BlockType.COMMAND,
+            text: 'break',
+            isTerminal: true
+          },
         ]
       };
     }
@@ -276,6 +289,14 @@ class DogeisCutsUtils {
 
     null_block(args) {
       return args.NULL;
+    }
+
+    continue(args) {
+      return 'This block must be placed in a loop!'
+    }
+
+    break(args) {
+      return 'This block must be placed in a loop!'
     }
   }
   

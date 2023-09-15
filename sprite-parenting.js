@@ -18,9 +18,9 @@
           blockIconURI: icon,
           blocks: [
             {
-              opcode: 'parent_sprite',
+              opcode: 'parent_sprites',
               blockType: Scratch.BlockType.COMMAND,
-              text: 'parent sprite [ONE] and [TWO]',
+              text: 'parent sprite [ONE] to [TWO]',
               filter: [Scratch.TargetType.SPRITE],
               arguments: {
                 ONE: {
@@ -34,9 +34,9 @@
               }
             },
             {
-              opcode: 'unparent_sprite',
+              opcode: 'unparent_sprites',
               blockType: Scratch.BlockType.COMMAND,
-              text: 'unparent sprite [ONE] and [TWO]',
+              text: 'unparent sprite [ONE] from [TWO]',
               filter: [Scratch.TargetType.SPRITE],
               arguments: {
                 ONE: {
@@ -65,16 +65,46 @@
           menus: {
             SPRITE_PARENT_MENU: {
               acceptReporters: true,
-              items: ['myself', 'insert sprites here']
+              items: "getSprites"
             }
           }
         };
       }
+
+      getSprites() {
+        let spriteNames = [];
+        spriteNames.push({
+          text: 'myself',
+          value: 'myself',
+        });
+        const targets = Scratch.vm.runtime.targets;
+        const myself = Scratch.vm.runtime.getEditingTarget().sprite.name;
+        for (let index = 1; index < targets.length; index++) {
+          const curTarget = targets[index].sprite;
+          let display = curTarget.name;
+          if (myself === curTarget.name) {
+            continue;
+          }
+          if (targets[index].isOriginal) {
+            const jsonOBJ = {
+              text: display,
+              value: curTarget.name,
+            };
+            spriteNames.push(jsonOBJ);
+          }
+        }
+        if (spriteNames.length > 0) {
+          return spriteNames;
+        } else {
+          return [{ text: "", value: 0 }]; //this should never happen but it's a failsafe
+        }
+      }
+      
     
-      parent_sprite(args, util) {
+      parent_sprites(args, util) {
         
       }
-      unparent_sprite(args) {    
+      unparent_sprites(args) {    
       }
       unparent_all(args) {    
       }

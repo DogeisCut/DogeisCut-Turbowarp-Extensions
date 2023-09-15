@@ -7,15 +7,21 @@
     throw new Error('\'DogeisCut Utils\' must run unsandboxed!');
   }
 
-  const previousValue = {}
+  const lastValues = {}
   const icon = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAPUExURYlmIf/YAAAAAMqlDgAAAAbidCoAAAAFdFJOU/////8A+7YOUwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAALNJREFUOE+lkAEOxSAIQ/Xr/c/8aa2IG2bJ1iyRlieYlQ6VMk7JrHsWCAJBOz3OUmqt4Q6sewdWQrcB+4gE2CKZDGA26xSw0MuXgKUqTkDQBfhJ1lEVAFusMAewQOEHgKkdS7OPBygKMhi/5AKEEShBANEKpVF6B758C2QEpzwAWV/EHbBQFXVfwXvO6JEgFhMRB4xorY3QdAIoNcbADKCwkkIrB/gs9lIAxFQOBOIATKL3Px/2B9eefxZyAAAAAElFTkSuQmCC"
 
   let randomSeed = 0
   let randomCount = 0
 
+  function triangleWave(x) {
+    x = ((x + Math.PI) % (2 * Math.PI)) - Math.PI;
+    return (2 / Math.PI) * (Math.PI / 2 - Math.abs(x));
+  }
+  
+  
   function seededRandom(seed) {
-    let x = Math.sin(Math.abs(Math.round(seed))+1) * (10000 + randomCount);
-    return x - Math.floor(x);
+    let x = Math.abs(triangleWave((Math.abs(randomCount)+1)*(35404762.5464353454334+Math.abs(seed))));
+    return x;
   }
   
   function getRandomNumber(seed, min, max) {
@@ -53,11 +59,13 @@ class DogeisCutsUtils {
           {
             opcode: 'changed',
             blockType: Scratch.BlockType.BOOLEAN,
-            text: 'changed [ONE]',
+            text: '[ONE] changed?',
             arguments: {
                 ONE: {
+                  //type: null, //this is on purpose so people actually put stuff in, instead of typing stuff 
+                  //except it's hideous so im turning it off
                   type: Scratch.ArgumentType.STRING,
-                  defaultValue: "apple",
+                  defaultValue: "reporter or bool",
                 },
               },
           },
@@ -159,16 +167,15 @@ class DogeisCutsUtils {
     }
   
     changed(args, util) {
-      let id = String(util.thread.peekStack())
-      if (previousValue[id]==undefined||previousValue[id]==null) {
-        previousValue[id] = false
+      //Re-did the code to look/work better based on Lily's more events extension.
+      const id = util.thread.peekStack()
+      if (!lastValues[id])
+        lastValues[id] = Scratch.Cast.toString(args.ONE);
+      if (Scratch.Cast.toString(args.ONE) !== lastValues[id]) {
+        lastValues[id] = Scratch.Cast.toString(args.ONE);
+        return true;
       }
-        if (args.ONE !== previousValue[id]) {
-          previousValue[id] = args.ONE;
-            return true;
-          } else {
-            return false;
-          }      
+      return false;
     }
 
     max(args) {

@@ -193,7 +193,8 @@ class DogeisCutsUtils {
             opcode: 'delete_sprite',
             blockType: Scratch.BlockType.COMMAND,
             text: 'delete this sprite',
-            isTerminal: true
+            isTerminal: true,
+            hideFromPalette: true
           },
           '---',
           {

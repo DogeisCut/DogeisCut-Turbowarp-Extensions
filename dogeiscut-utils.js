@@ -189,13 +189,13 @@ class DogeisCutsUtils {
           },
           '---',
           {
-            opcode: 'continue',
+            opcode: 'loop_continue',
             blockType: Scratch.BlockType.COMMAND,
             text: 'continue',
             isTerminal: true
           },
           {
-            opcode: 'break',
+            opcode: 'loop_break',
             blockType: Scratch.BlockType.COMMAND,
             text: 'break',
             isTerminal: true
@@ -291,11 +291,11 @@ class DogeisCutsUtils {
       return args.NULL;
     }
 
-    continue(args) {
+    loop_continue(args) {
       return 'This block must be placed in a loop!'
     }
 
-    break(args) {
+    loop_break(args) {
       return 'This block must be placed in a loop!'
     }
   }

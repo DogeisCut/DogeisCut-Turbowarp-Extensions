@@ -9,6 +9,7 @@
 
   const lastValues = {}
   const icon = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAPUExURYlmIf/YAAAAAMqlDgAAAAbidCoAAAAFdFJOU/////8A+7YOUwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAALNJREFUOE+lkAEOxSAIQ/Xr/c/8aa2IG2bJ1iyRlieYlQ6VMk7JrHsWCAJBOz3OUmqt4Q6sewdWQrcB+4gE2CKZDGA26xSw0MuXgKUqTkDQBfhJ1lEVAFusMAewQOEHgKkdS7OPBygKMhi/5AKEEShBANEKpVF6B758C2QEpzwAWV/EHbBQFXVfwXvO6JEgFhMRB4xorY3QdAIoNcbADKCwkkIrB/gs9lIAxFQOBOIATKL3Px/2B9eefxZyAAAAAElFTkSuQmCC"
+  let iconInUse = icon
 
   let randomSeed = 0
   let randomCount = 0
@@ -48,6 +49,9 @@
 
   let newNumber = 0
 
+  let disableIconsText = 'Disable Icons'
+  let iconsDisabled = false;
+
 class DogeisCutsUtils {
     
 
@@ -56,8 +60,14 @@ class DogeisCutsUtils {
         id: 'dogeiscututils',
         name: 'DogeisCut\'s Utils',
         menuIconURI: icon,
-        blockIconURI: icon,
+        blockIconURI: iconInUse,
         blocks: [
+          {
+            opcode: 'disable_icons',
+            blockType: Scratch.BlockType.BUTTON,
+            text: disableIconsText
+          },
+          '---',
           {
             opcode: 'changed',
             blockType: Scratch.BlockType.BOOLEAN,
@@ -311,6 +321,18 @@ class DogeisCutsUtils {
     delete_sprite(args, util) {
       //util.target
       return
+    }
+
+    disable_icons(args) {
+      if (iconsDisabled==true) {
+        iconsDisabled = false
+        disableIconsText = 'Disable Icons'
+        iconInUse = icon
+      } else {
+        iconsDisabled = true
+        disableIconsText = 'Enable Icons'
+        iconInUse = null
+      }
     }
   }
   

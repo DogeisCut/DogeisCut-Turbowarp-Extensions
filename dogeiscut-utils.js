@@ -175,6 +175,7 @@ class DogeisCutsUtils {
               }
             },
           },
+          '---',
           {
             opcode: 'useless',
             blockType: null,

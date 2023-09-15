@@ -46,6 +46,8 @@
     return Math.min(Math.max(num, min), max);
   }
 
+  let newNumber = 0
+
 class DogeisCutsUtils {
     
 
@@ -150,6 +152,18 @@ class DogeisCutsUtils {
             blockType: Scratch.BlockType.COMMAND,
             text: 'reset seeded random'
           },
+          '---',
+          {
+            opcode: 'new_number',
+            blockType: Scratch.BlockType.REPORTER,
+            text: 'new number',
+            disableMonitor: true //causes it to repeat count up if monitored
+          },
+          {
+            opcode: 'reset_new_number',
+            blockType: Scratch.BlockType.COMMAND,
+            text: 'reset new number'
+          },
           {
             opcode: 'log_util',
             blockType: Scratch.BlockType.COMMAND,
@@ -194,6 +208,14 @@ class DogeisCutsUtils {
 
     reset_seeded_random(args) {
       randomCount = 0
+    }
+
+    new_number(args) {
+     return newNumber++;
+    }
+
+    reset_new_number(args) {
+      newNumber = 0;
     }
 
     log_util(args, util) {

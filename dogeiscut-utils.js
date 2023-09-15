@@ -164,6 +164,22 @@ class DogeisCutsUtils {
             blockType: Scratch.BlockType.COMMAND,
             text: 'reset new number'
           },
+          '---',
+          {
+            opcode: 'null_block',
+            blockType: Scratch.BlockType.REPORTER,
+            text: '[NULL]',
+            arguments: {
+              NULL: {
+                type: null,
+              }
+            },
+          },
+          {
+            opcode: 'useless',
+            blockType: null,
+            text: 'useless'
+          },
           {
             opcode: 'log_util',
             blockType: Scratch.BlockType.COMMAND,
@@ -220,6 +236,45 @@ class DogeisCutsUtils {
 
     log_util(args, util) {
       console.log(util)
+    }
+
+    useless(args) {
+      let response = Math.round(Math.random() * 9)
+      switch (response) {
+        case 1:
+          return 'Don\'t you have better blocks to be clicking?';
+          break;
+        case 2:
+          return 'I assure you that there are 0 use cases for me.';
+          break;
+        case 3:
+          return 'You\'re giving me false hope that I\'d be useful.';
+          break;
+        case 4:
+          return 'Trust me, I\'m not the best option for your project right now.';
+          break;
+        case 5:
+          return 'I\'ll never be as good as those other blocks...';
+          break;
+        case 6:
+          return 'I was born without a connection point. Nobody can connect with me!';
+          break;
+        case 7:
+          return 'Even \'touching color\' will be a better bet for you here.';
+          break;
+        case 8:
+          return 'Why don\'t you go use \'change backdrop to () and wait\'? I bet you forgot that even exists.';
+          break;
+        case 9:
+          return 'Stop it!';
+          break;
+        default:
+          return 'I litterally do nothing.';
+      }
+    }
+
+    null_block(args) {
+      return args.NULL;
     }
   }
   

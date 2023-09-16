@@ -60,7 +60,7 @@ class DogeisCutsUtils {
         id: 'dogeiscututils',
         name: 'DogeisCut\'s Utils',
         menuIconURI: icon,
-        blockIconURI: iconInUse,
+        //blockIconURI: iconInUse,
         blocks: [
           //Disabling cause aparently it's impossible :(
           /*{
@@ -166,6 +166,22 @@ class DogeisCutsUtils {
           },
           '---',
           {
+            opcode: 'ordered_random',
+            blockType: Scratch.BlockType.REPORTER,
+            text: 'ordered pick random [MIN] to [MAX]',
+            arguments: {
+                MIN: {
+                  type: Scratch.ArgumentType.NUMBER,
+                  defaultValue: 1,
+                },
+                MAX: {
+                  type: Scratch.ArgumentType.NUMBER,
+                  defaultValue: 10,
+                },
+              },
+          },
+          '---',
+          {
             opcode: 'new_number',
             blockType: Scratch.BlockType.REPORTER,
             text: 'new number',
@@ -188,7 +204,8 @@ class DogeisCutsUtils {
               }
             },
           },*/
-          '---',
+          //turbowarp if it was actually good:
+          /*'---',
           {
             opcode: 'loop_continue',
             blockType: Scratch.BlockType.COMMAND,
@@ -201,6 +218,7 @@ class DogeisCutsUtils {
             text: 'break',
             isTerminal: true
           },
+          */
           '---',
           {
             opcode: 'delete_sprite',

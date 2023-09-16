@@ -219,6 +219,7 @@ class DogeisCutsUtils {
             isTerminal: true
           },
           */
+          /*
           '---',
           {
             opcode: 'delete_sprite',
@@ -227,6 +228,7 @@ class DogeisCutsUtils {
             isTerminal: true,
             hideFromPalette: true
           },
+          */
           '---',
           {
             opcode: 'useless',
@@ -334,6 +336,7 @@ class DogeisCutsUtils {
       return args.NULL;
     }
 
+    /*
     loop_continue(args) {
       return 'This block must be placed in a loop!'
     }
@@ -346,7 +349,9 @@ class DogeisCutsUtils {
       //util.target
       return
     }
+    */
 
+    /*
     disable_icons() {
       if (iconsDisabled==true) {
         iconsDisabled = false
@@ -359,6 +364,7 @@ class DogeisCutsUtils {
       }
       Scratch.vm.extensionManager.refreshBlocks();
     }
+    */
   }
   
   Scratch.extensions.register(new DogeisCutsUtils());

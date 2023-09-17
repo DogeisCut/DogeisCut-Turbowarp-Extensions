@@ -49,16 +49,10 @@ var beepbox=function(e){"use strict";
     class BeepBoxPlayer {
         constructor() {
             runtime.on("PROJECT_STOP_ALL", () => {
-                for (synth in synths) {
-                    synth.snapToStart()
-                    synth.pause()
-                }
+                this.clearSynths()
               });
               runtime.on("PROJECT_START", () => {
-                for (synth in synths) {
-                    synth.snapToStart()
-                    synth.pause()
-                }
+                this.clearSynths()
               });
         }
         getInfo() {
@@ -411,6 +405,10 @@ var beepbox=function(e){"use strict";
         }
         */
        clearSynths(args) {
+            for (let i of synths) {
+                i.deactivateAudio()
+                i = undefined
+            }
             synths = []
             synth = new beepbox.Synth(url);
             synths.push(synth);

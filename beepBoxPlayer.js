@@ -223,7 +223,9 @@ var beepbox=function(e){"use strict";
                     break;
                 case 'beat':
                     synth.beat = args.VALUE
-                    this.part = 0;
+                    synth.part = 0;
+                    synth.tick = 0;
+                    synth.tickSampleCountdown = 0;
                     break;
                 case 'part':
                     synth.part = args.VALUE
@@ -259,11 +261,19 @@ var beepbox=function(e){"use strict";
         }
 
         playSongWait(args) {
-            if (synth.isPlayingSong) {
-                setTimeout(playSongWait, 100, args)
-            }
             synth.activateAudio();
             synth.play();
+            return new Promise((resolve, reject) => {
+                const checkIsPlaying = () => {
+                  if (synth.isPlayingSong) {
+                    setTimeout(checkIsPlaying, 100);
+                  } else {
+                    resolve();
+                  }
+                };
+            
+                checkIsPlaying();
+              });
         }
 
         pauseSong(args) {

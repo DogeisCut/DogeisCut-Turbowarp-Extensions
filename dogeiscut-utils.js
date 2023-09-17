@@ -302,34 +302,24 @@ class DogeisCutsUtils {
       switch (response) {
         case 1:
           return 'Don\'t you have better blocks to be clicking?';
-          break;
         case 2:
           return 'I assure you that there are zero use cases for me.';
-          break;
         case 3:
           return 'You\'re giving me false hope that I\'d be useful.';
-          break;
         case 4:
           return 'Trust me, I\'m not the best option for your project right now.';
-          break;
         case 5:
           return 'I\'ll never be as good as those other blocks...';
-          break;
         case 6:
           return 'I was born without a connection point. Nobody can connect with me!';
-          break;
         case 7:
           return 'Even \'touching color\' will be a better bet for you here.';
-          break;
         case 8:
           return 'Why don\'t you go use \'change backdrop to () and wait\'? I bet you forgot that even exists.';
-          break;
         case 9:
           return 'Stop it!';
-          break;
         case 10:
           return 'CURSE YOU DOGEISCUT FOR ADDING ME!!!';
-          break;
         default:
           return 'I litterally do nothing.';
       }

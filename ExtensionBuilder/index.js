@@ -62,30 +62,24 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function updateSVGColors() {
-    // Get the SVG element with the ID "block"
     const svgElement = document.getElementById("block");
 
-    // Get the current SVG content
     const svgContent = svgElement.innerHTML;
 
-    // Replace color values using regular expressions
     const updatedSVGContent = svgContent
         .replace(/#4C97FF/g, document.getElementById("color1").value)
         .replace(/#3373CC/g, document.getElementById("color2").value)
         .replace(/#4280D7/g, document.getElementById("color3").value);
 
-    // Update the SVG content
     svgElement.innerHTML = updatedSVGContent;
 }
 
 
 function transformColor(hexColor) {
-    // Parse the hex color to RGB
     const r = parseInt(hexColor.slice(1, 3), 16);
     const g = parseInt(hexColor.slice(3, 5), 16);
     const b = parseInt(hexColor.slice(5, 7), 16);
   
-    // Convert RGB to HSV
     const max = Math.max(r, g, b);
     const min = Math.min(r, g, b);
     const delta = max - min;
@@ -102,16 +96,14 @@ function transformColor(hexColor) {
       h = (r - g) / delta + 4;
     }
   
-    h = Math.round((h * 60 + 360) % 360); // Convert hue to degrees
-    s = Math.round((max === 0 ? 0 : (delta / max)) * 100); // Saturation as percentage
-    v = Math.round((max / 255) * 100); // Value as percentage
+    h = Math.round((h * 60 + 360) % 360);
+    s = Math.round((max === 0 ? 0 : (delta / max)) * 100);
+    v = Math.round((max / 255) * 100);
   
-    // Apply transformations
-    h = (h - 1 + 360) % 360; // Hue shift by -1
-    v = Math.max(0, v - 20); // Darken by 20
-    s = Math.max(0, s - 2); // Desaturate by 2
+    h = (h - 1 + 360) % 360;
+    v = Math.max(0, v - 20);
+    s = Math.max(0, s - 2);
   
-    // Convert HSV back to RGB
     s = s / 100;
     v = v / 100;
     const c = v * s;
@@ -150,7 +142,6 @@ function transformColor(hexColor) {
     g1 = Math.round((g1 + m) * 255);
     b1 = Math.round((b1 + m) * 255);
   
-    // Convert RGB to hex
     const hexR = r1.toString(16).padStart(2, '0');
     const hexG = g1.toString(16).padStart(2, '0');
     const hexB = b1.toString(16).padStart(2, '0');

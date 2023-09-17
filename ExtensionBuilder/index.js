@@ -47,7 +47,8 @@ document.addEventListener("DOMContentLoaded", function() {
             templateCode +=`                color2: "${color2}",\n`;
             templateCode +=`                color3: "${color3}",\n`;
         }
-            templateCode +=`                blocks: '[]'\n`
+            //todo: make this include template blocks with a checkbox to enable them or not
+            templateCode +=`                blocks: []\n`
             templateCode +=`            }\n`
             templateCode +=`        }\n`
             templateCode +=`    }\n\n`

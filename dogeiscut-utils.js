@@ -59,6 +59,9 @@ class DogeisCutsUtils {
       return {
         id: 'dogeiscututils',
         name: 'DogeisCut\'s Utils',
+        color1: '#9e9075',
+        color2: '#7a705b',
+        color3: '#5c5444',
         menuIconURI: icon,
         //blockIconURI: iconInUse,
         blocks: [

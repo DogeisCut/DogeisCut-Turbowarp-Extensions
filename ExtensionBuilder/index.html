@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turbowarp Extension Template Generator</title>
+</head>
+<body>
+    <form id="templateForm">
+        <label for="templateName">Template Name:</label>
+        <input type="text" id="templateName" name="templateName" required><br><br>
+        
+        <label for="color1">Color 1:</label>
+        <input type="color" id="color1" name="color1" value="#969696"><br><br>
+    
+        <label for="color1">Color 2:</label>
+        <input type="color" id="color2" name="color2" value="#717171"><br><br>
+    
+        <label for="color1">Color 3:</label>
+        <input type="color" id="color3" name="color3" value="#3E3E3E"><br><br>
+        
+        <input type="checkbox" id="defaultColors" name="defaultColors">
+        <label for="defaultColors">Default Colors</label><br><br>
+
+        <input type="checkbox" id="useIcon" name="useIcon">
+        <label for="useIcon">Use Icon</label><br><br>
+        
+        <label for="iconUpload">Upload Icon:</label>
+        <input type="file" id="iconUpload" name="iconUpload"><br><br>
+        
+        <button type="button" id="generateTemplate">Generate Template</button>
+    </form>
+
+    <br><br>
+    <label for="block">Preview (Doesn't work yet lol):</label>
+    <br>
+
+    <svg id="block" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="57" width="321.37964" id="svg44" version="1.1"> <defs id="defs48"/> <g transform="translate(0.5,0.5)" id="g42" data-category="motion" data-shapes="stack" class="blocklyDraggable blocklySelected" data-id="39+{*wLz]uBC70+TFABt"> <path id="path2" d="M 0,4 A 4,4 0 0 1 4,0 h 8 c 2,0 3,1 4,2 l 4,4 c 1,1 2,2 4,2 h 12 c 2,0 3,-1 4,-2 l 4,-4 c 1,-1 2,-2 4,-2 h 268.37962 a 4,4 0 0 1 4,4 v 40 a 4,4 0 0 1 -4,4 H 48 c -2,0 -3,1 -4,2 l -4,4 c -1,1 -2,2 -4,2 H 24 c -2,0 -3,-1 -4,-2 L 16,50 C 15,49 14,48 12,48 H 4 A 4,4 0 0 1 0,44 Z" fill-opacity="1" fill="#4c97ff" stroke="#3373cc" class="blocklyPath blocklyBlockBackground"/> <path class="blocklyPath blocklyBlockBackground" stroke="#3373cc" fill="#ffffff" fill-opacity="1" d="m 49.819443,8 m 16,0 h 8 a 16,16 0 0 1 0,32 h -8 a 16,16 0 0 1 0,-32 z" id="path4"/> <g class="blocklyEditableText" transform="translate(57.819443,8)" id="g8"> <text style="font-size:14px" class="blocklyText" x="12" y="18" dominant-baseline="middle" dy="0" text-anchor="middle" id="text6">1</text> </g> <g transform="translate(49.819443,8)" id="g12"> <g id="g10"/> </g> <g id="g28" transform="translate(156.51389,8)" data-shapes="argument round" data-argument-type="dropdown" data-id="_cQTa;nT*rv0l*OV?yLw"> <path id="path16" d="m 0,0 m 16,0 h 123.86574 a 16,16 0 0 1 0,32 H 16 A 16,16 0 0 1 16,0 Z" fill-opacity="1" fill="#4280d7" stroke="#3373cc" class="blocklyPath blocklyBlockBackground"/> <text class="blocklyText blocklyDropdownText" x="67.932869" y="18" dominant-baseline="middle" dy="0" text-anchor="middle" style="font-size:14px;fill:#ffffff" id="text18">random position</text> <image y="11" x="131.86574" height="12" width="12" xlink:href="data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMi43MSIgaGVpZ2h0PSI4Ljc5IiB2aWV3Qm94PSIwIDAgMTIuNzEgOC43OSI+PHRpdGxlPmRyb3Bkb3duLWFycm93PC90aXRsZT48ZyBvcGFjaXR5PSIwLjEiPjxwYXRoIGQ9Ik0xMi43MSwyLjQ0QTIuNDEsMi40MSwwLDAsMSwxMiw0LjE2TDguMDgsOC4wOGEyLjQ1LDIuNDUsMCwwLDEtMy40NSwwTDAuNzIsNC4xNkEyLjQyLDIuNDIsMCwwLDEsMCwyLjQ0LDIuNDgsMi40OCwwLDAsMSwuNzEuNzFDMSwwLjQ3LDEuNDMsMCw2LjM2LDBTMTEuNzUsMC40NiwxMiwuNzFBMi40NCwyLjQ0LDAsMCwxLDEyLjcxLDIuNDRaIiBmaWxsPSIjMjMxZjIwIi8+PC9nPjxwYXRoIGQ9Ik02LjM2LDcuNzlhMS40MywxLjQzLDAsMCwxLTEtLjQyTDEuNDIsMy40NWExLjQ0LDEuNDQsMCwwLDEsMC0yYzAuNTYtLjU2LDkuMzEtMC41Niw5Ljg3LDBhMS40NCwxLjQ0LDAsMCwxLDAsMkw3LjM3LDcuMzdBMS40MywxLjQzLDAsMCwxLDYuMzYsNy43OVoiIGZpbGw9IiNmZmYiLz48L3N2Zz4=" id="image20"/> <g id="g26"> <g id="g24"/> </g> </g> <text id="text30" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14px;font-family:sans-serif;-inkscape-font-specification:sans-serif;fill:#ffffff" transform="translate(8,24)" x="16.909721" dy="0" dominant-baseline="middle" text-anchor="middle" y="2" class="blocklyText">glide</text> <path id="path32" fill="#3373cc" d="" style="visibility:hidden" class="blocklyPath"/> <text id="text34" style="font-size:14px;fill:#ffffff" transform="translate(97.819443,24)" x="25.347221" dy="0" dominant-baseline="middle" text-anchor="middle" y="2" class="blocklyText">secs to</text> <path id="path36" fill="#3373cc" d="" style="visibility:hidden" class="blocklyPath"/> <g id="g40"> <g id="g38"/> </g> </g></svg>
+
+    <script src="index.js"></script>
+</body>
+</html>
+
+

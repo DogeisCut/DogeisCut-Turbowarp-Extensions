@@ -34,8 +34,12 @@ var beepbox=function(e){"use strict";
 
     var url = "5sbk4l00e0ftaa7g0fj7i0r1w1100f0000d1110c0000h0000v2200o3320b4z8Ql6hkpUsiczhkp5hDxN8Od5hAl6u74z8Ql6hkpUsp24ZFzzQ1E39kxIceEtoV8s66138l1S0L1u2139l1H39McyaeOgKA0TxAU213jj0NM4x8i0o0c86ywz7keUtVxQk1E3hi6OEcB8Atl0q0Qmm6eCexg6wd50oczkhO8VcsEeAc26gG3E1q2U406hG3i6jw94ksf8i5Uo0dZY26kHHzxp2gAgM0o4d516ej7uegceGwd0q84czm6yj8Xa0Q1EIIctcvq0Q1EE3ihE8W1OgV8s46Icxk7o24110w0OdgqMOk392OEWhS1ANQQ4toUctBpzRxx1M0WNSk1I3ANMEXwS3I79xSzJ7q6QtEXgw0"
 
+    let synths = []
     var synth = new beepbox.Synth(url);
+    synths.push(synth);
     synth.volume = 2
+
+    var targetSynth = 0;
 
     const vm = Scratch.vm;
     const runtime = vm.runtime;
@@ -45,10 +49,16 @@ var beepbox=function(e){"use strict";
     class BeepBoxPlayer {
         constructor() {
             runtime.on("PROJECT_STOP_ALL", () => {
-                this.stopSong()
+                for (synth in synths) {
+                    synth.snapToStart()
+                    synth.pause()
+                }
               });
               runtime.on("PROJECT_START", () => {
-                this.stopSong()
+                for (synth in synths) {
+                    synth.snapToStart()
+                    synth.pause()
+                }
               });
         }
         getInfo() {
@@ -103,7 +113,7 @@ var beepbox=function(e){"use strict";
                         },
                     },
                     {
-                        opcode: 'setCurrent',
+                        opcode: 'setCurrentValue',
                         blockType: Scratch.BlockType.COMMAND,
                         text: 'set current [WHAT] to [VALUE]',
                         arguments: {
@@ -115,6 +125,22 @@ var beepbox=function(e){"use strict";
                                 type: Scratch.ArgumentType.NUMBER,
                                 defaultValue: 2
                               },
+                        },
+                        disableMonitor: false
+                    },
+                    {
+                        opcode: 'setSongValue',
+                        blockType: Scratch.BlockType.COMMAND,
+                        text: 'set song [WHAT] to [VALUE]',
+                        arguments: {
+                            WHAT: {
+                              type: Scratch.ArgumentType.STRING,
+                              menu: 'SONG_MENU_LIMITED'
+                            },
+                            VALUE: {
+                                type: Scratch.ArgumentType.STRING,
+                                defaultValue: "150"
+                            },
                         },
                         disableMonitor: false
                     },
@@ -178,6 +204,51 @@ var beepbox=function(e){"use strict";
                         blockType: Scratch.BlockType.COMMAND,
                         text: 'disable looping'
                     }, 
+                    '---',
+                    {
+                        opcode: 'synths',
+                        blockType: Scratch.BlockType.REPORTER,
+                        text: 'synths'
+                    },
+                    {
+                        opcode: 'targetSynth',
+                        blockType: Scratch.BlockType.REPORTER,
+                        text: 'target synth'
+                    },
+                    {
+                        opcode: 'createSynth',
+                        blockType: Scratch.BlockType.COMMAND,
+                        text: 'create new synth'
+                    },
+                    {
+                        opcode: 'setTargetSynth',
+                        blockType: Scratch.BlockType.COMMAND,
+                        text: 'set target synth to [SYNTH]',
+                        arguments: {
+                            SYNTH: {
+                              type: Scratch.ArgumentType.NUMBER,
+                              defaultValue: 1
+                            },
+                        },
+                    },
+                    /*
+                    {
+                        opcode: 'deleteSynth',
+                        blockType: Scratch.BlockType.COMMAND,
+                        text: 'delete synth [SYNTH]',
+                        arguments: {
+                            SYNTH: {
+                              type: Scratch.ArgumentType.NUMBER,
+                              defaultValue: 1
+                            },
+                        },
+                    },
+                    */
+                    {
+                        opcode: 'clearSynths',
+                        blockType: Scratch.BlockType.COMMAND,
+                        text: 'clear synths'
+                    },
                 ],
                 menus: {
                     CURRENT_MENU: {
@@ -194,7 +265,7 @@ var beepbox=function(e){"use strict";
                       },
                       SONG_MENU_LIMITED: {
                           acceptReporters: false, //scratch consitsancy, also disables monitor if true, sorry!
-                          items: ['tempo', 'volume', 'title']
+                          items: ['tempo', 'title']
                       }
                 }
             }
@@ -215,7 +286,7 @@ var beepbox=function(e){"use strict";
             }
             
         }
-        setCurrent(args) {
+        setCurrentValue(args) {
             switch (args.WHAT) {
                 case 'bar':
                     synth.bar = args.VALUE
@@ -244,6 +315,16 @@ var beepbox=function(e){"use strict";
                     return synth.song.title
             }
             
+        }
+        setSongValue(args) {
+            switch (args.WHAT) {
+                case 'tempo':
+                    synth.song.tempo = Scratch.Cast.toNumber(args.VALUE)
+                    return;
+                case 'title':
+                    synth.song.title = Scratch.Cast.toString(args.VALUE)
+                    return;
+            }
         }
 
         playingSong(args) {
@@ -288,10 +369,10 @@ var beepbox=function(e){"use strict";
         }
 
         setSongVolume(args) {
-            synth.volume = args.VOLUME*2/100
+            synth.volume = args.VOLUME*2/100 * Scratch.vm.runtime.audioEngine.inputNode.gain.value
         }
         changeSongVolume(args) {
-            synth.volume += args.VOLUME*2/100
+            synth.volume += args.VOLUME*2/100 * Scratch.vm.runtime.audioEngine.inputNode.gain.value
         }
 
         disableLooping(args) {
@@ -301,6 +382,40 @@ var beepbox=function(e){"use strict";
             synth.loopRepeatCount = -1
         }
 
+        createSynth(args) {
+            synth = new beepbox.Synth(url);
+            synths.push(synth);
+            synth.volume = 2
+            targetSynth = synths.length-1
+        }
+
+        synths(args) {
+            return synths.length;
+        }
+
+        targetSynth(args) {
+            return targetSynth+1;
+        }
+
+        setTargetSynth(args) {
+            let length = synths.length-1;
+            targetSynth = Math.max(0,Math.min(args.SYNTH-1,length));
+            synth = synths[targetSynth];
+        }
+
+        /*
+        deleteSynth(args) {
+            let length = synths.length-1;
+            targetSynth = Math.max(0,Math.min(args.SYNTH-1,length));
+            synths[targetSynth] = undefined;
+        }
+        */
+       clearSynths(args) {
+            synths = []
+            synth = new beepbox.Synth(url);
+            synths.push(synth);
+            synth.volume = 2
+       }
         
     }
 

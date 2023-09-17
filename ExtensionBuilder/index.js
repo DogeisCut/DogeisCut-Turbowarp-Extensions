@@ -38,8 +38,8 @@ document.addEventListener("DOMContentLoaded", function() {
             templateCode +=`                name: '${templateName}',\n`
 
             if (useIcon) {
-            templateCode +=`        menuIconURI: icon,\n`
-            templateCode +=`        blockIconURI: icon,\n`
+            templateCode +=`                menuIconURI: icon,\n`
+            templateCode +=`                blockIconURI: icon,\n`
             }
             
         if (!defaultColors) {

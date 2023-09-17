@@ -4,7 +4,7 @@
   const vm = Scratch.vm
 
   if (!Scratch.extensions.unsandboxed) {
-    throw new Error('\'DogeisCut Utils\' must run unsandboxed!');
+    throw new Error('\'DogeisCut Utils\' must run unsandboxed! (So I can run a bunch of viruses, yup.)');
   }
 
   const lastValues = {}
@@ -325,9 +325,11 @@ class DogeisCutsUtils {
       }
     }
 
+    /*
     null_block(args) {
       return args.NULL;
     }
+    */
 
     /*
     loop_continue(args) {

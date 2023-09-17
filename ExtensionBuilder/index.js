@@ -56,12 +56,12 @@ document.addEventListener("DOMContentLoaded", function() {
             templateCode += `    Scratch.extensions.register(new ${templateNameClass}());\n`;
             templateCode += `})(Scratch);`;
 
-            // Now 'templateCode' contains the generated code
             console.log(templateCode);
     });
 });
 
 function updateSVGColors() {
+    //todo: make this actually work
     const svgElement = document.getElementById("block");
 
     const svgContent = svgElement.innerHTML;

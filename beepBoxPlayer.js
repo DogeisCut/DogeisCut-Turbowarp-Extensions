@@ -90,6 +90,7 @@ var beepbox=function(e){"use strict";
                         blockType: Scratch.BlockType.BOOLEAN,
                         text: 'playing song?',
                     },
+                    '---',
                     {
                         opcode: 'setSong',
                         blockType: Scratch.BlockType.COMMAND,
@@ -100,6 +101,22 @@ var beepbox=function(e){"use strict";
                               defaultValue: "5sbk4l00e0ftaa7g0fj7i0r1w1100f0000d1110c0000h0000v2200o3320b4z8Ql6hkpUsiczhkp5hDxN8Od5hAl6u74z8Ql6hkpUsp24ZFzzQ1E39kxIceEtoV8s66138l1S0L1u2139l1H39McyaeOgKA0TxAU213jj0NM4x8i0o0c86ywz7keUtVxQk1E3hi6OEcB8Atl0q0Qmm6eCexg6wd50oczkhO8VcsEeAc26gG3E1q2U406hG3i6jw94ksf8i5Uo0dZY26kHHzxp2gAgM0o4d516ej7uegceGwd0q84czm6yj8Xa0Q1EIIctcvq0Q1EE3ihE8W1OgV8s46Icxk7o24110w0OdgqMOk392OEWhS1ANQQ4toUctBpzRxx1M0WNSk1I3ANMEXwS3I79xSzJ7q6QtEXgw0",
                             }
                         },
+                    },
+                    {
+                        opcode: 'setCurrent',
+                        blockType: Scratch.BlockType.COMMAND,
+                        text: 'set current [WHAT] to [VALUE]',
+                        arguments: {
+                            WHAT: {
+                              type: Scratch.ArgumentType.STRING,
+                              menu: 'CURRENT_MENU_LIMITED'
+                            },
+                            VALUE: {
+                                type: Scratch.ArgumentType.NUMBER,
+                                defaultValue: 2
+                              },
+                        },
+                        disableMonitor: false
                     },
                     '---',
                     {
@@ -126,7 +143,7 @@ var beepbox=function(e){"use strict";
                         opcode: 'restartSong',
                         blockType: Scratch.BlockType.COMMAND,
                         text: 'restart current song'
-                    },
+                    },      
                     '---',
                     {
                         opcode: 'setSongVolume',
@@ -170,7 +187,15 @@ var beepbox=function(e){"use strict";
                     SONG_MENU: {
                         acceptReporters: false, //scratch consitsancy, also disables monitor if true, sorry!
                         items: ['tempo', 'channels', 'volume', 'title']
-                    }
+                    },
+                    CURRENT_MENU_LIMITED: {
+                        acceptReporters: false, //scratch consitsancy, also disables monitor if true, sorry!
+                        items: ['bar', 'beat', 'part']
+                      },
+                      SONG_MENU_LIMITED: {
+                          acceptReporters: false, //scratch consitsancy, also disables monitor if true, sorry!
+                          items: ['tempo', 'volume', 'title']
+                      }
                 }
             }
         }
@@ -189,6 +214,21 @@ var beepbox=function(e){"use strict";
                     return synth.tick
             }
             
+        }
+        setCurrent(args) {
+            switch (args.WHAT) {
+                case 'bar':
+                    synth.bar = args.VALUE
+                    synth.snapToBar();
+                    break;
+                case 'beat':
+                    synth.beat = args.VALUE
+                    this.part = 0;
+                    break;
+                case 'part':
+                    synth.part = args.VALUE
+                    break;
+            }
         }
         song(args) {
             switch (args.WHAT) {

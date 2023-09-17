@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", function() {
         if (document.getElementById("color1").value) {
         updateSVGColors()
           const transformedColor = transformColor(document.getElementById("color1").value);
-          console.log(transformedColor)
           document.getElementById("color2").value = transformedColor;
           document.getElementById("color3").value = transformedColor;
         }
@@ -23,22 +22,6 @@ document.addEventListener("DOMContentLoaded", function() {
         const useIcon = document.getElementById("useIcon").checked;
         const iconFile = document.getElementById("iconUpload").files[0];
 
-        const reader = new FileReader();
-
-        let iconDataURL
-
-        reader.addEventListener(
-            "load",
-            () => {
-              iconDataURL = reader.result;
-            },
-            false,
-          );
-
-          if (iconFile) {
-            reader.readAsDataURL(iconFile);
-          }
-
         let templateCode = `(function(Scratch) {\n`
             templateCode +=`    'use strict';\n\n`
             templateCode +=`    if (!Scratch.extensions.unsandboxed) {\n`
@@ -46,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function() {
             templateCode +=`    }\n\n`;
         
             if (useIcon) 
-            templateCode +=`    const icon = "${iconDataURL}";\n\n`;
+            templateCode +=`    const icon = "${"\'doesnt work yet lol\'"}";\n\n`;
 
             templateCode +=`    class ${templateNameClass} {\n`
             templateCode +=`        getInfo() {\n`

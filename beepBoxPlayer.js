@@ -8,7 +8,7 @@
     //So, i have to copy and paste the entire beepbox player code in here, as adding in scripts is not advised
     //Also, the source code uses `new Function()` but it doesnt take user input, there is not a way i can figure out to
     //make this code still work within the IIFE
-    var beepboxButWithAReallySpecificNameToHopefullyAvoidGlobalConflicts=function(e){"use strict";
+    var beepbox=function(e){"use strict";
 /*!
     Copyright (c) 2012-2022 John Nesky and contributing authors
 
@@ -34,12 +34,12 @@
 //# sourceMappingURL=beepbox_synth.min.js.map
 
 
-    console.log(beepboxButWithAReallySpecificNameToHopefullyAvoidGlobalConflicts)
+    console.log(beepbox)
 
     var url = "5sbk4l00e0ftaa7g0fj7i0r1w1100f0000d1110c0000h0000v2200o3320b4z8Ql6hkpUsiczhkp5hDxN8Od5hAl6u74z8Ql6hkpUsp24ZFzzQ1E39kxIceEtoV8s66138l1S0L1u2139l1H39McyaeOgKA0TxAU213jj0NM4x8i0o0c86ywz7keUtVxQk1E3hi6OEcB8Atl0q0Qmm6eCexg6wd50oczkhO8VcsEeAc26gG3E1q2U406hG3i6jw94ksf8i5Uo0dZY26kHHzxp2gAgM0o4d516ej7uegceGwd0q84czm6yj8Xa0Q1EIIctcvq0Q1EE3ihE8W1OgV8s46Icxk7o24110w0OdgqMOk392OEWhS1ANQQ4toUctBpzRxx1M0WNSk1I3ANMEXwS3I79xSzJ7q6QtEXgw0"
 
     let synths = []
-    var synth = new beepboxButWithAReallySpecificNameToHopefullyAvoidGlobalConflicts.Synth(url);
+    var synth = new beepbox.Synth(url);
     synths.push(synth);
     synth.volume = 2
 
@@ -436,7 +436,7 @@
         }
 
         createSynth(args) {
-            synth = new beepboxButWithAReallySpecificNameToHopefullyAvoidGlobalConflicts.Synth(url);
+            synth = new beepbox.Synth(url);
             synths.push(synth);
             synth.volume = 2
             targetSynth = synths.length-1
@@ -469,7 +469,7 @@
                 i = undefined
             }
             synths = []
-            synth = new beepboxButWithAReallySpecificNameToHopefullyAvoidGlobalConflicts.Synth(url);
+            synth = new beepbox.Synth(url);
             synths.push(synth);
             synth.volume = 2
        }

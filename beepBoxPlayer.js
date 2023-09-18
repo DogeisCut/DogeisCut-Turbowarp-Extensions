@@ -392,10 +392,10 @@ var beepbox=function(e){"use strict";
         }
 
         setSongVolume(args) {
-            synth.volume = args.VOLUME*2/100 * Scratch.vm.runtime.audioEngine.inputNode.gain.value
+            synth.volume = Math.max(Math.min(args.VOLUME*2/100 * Scratch.vm.runtime.audioEngine.inputNode.gain.value,400),0)
         }
         changeSongVolume(args) {
-            synth.volume += args.VOLUME*2/100 * Scratch.vm.runtime.audioEngine.inputNode.gain.value
+            synth.volume += Math.max(Math.min(args.VOLUME*2/100 * Scratch.vm.runtime.audioEngine.inputNode.gain.value,400),0)
         }
 
         disableLooping(args) {

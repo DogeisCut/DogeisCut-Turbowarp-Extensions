@@ -59,9 +59,9 @@ var beepbox=function(e){"use strict";
             return {
                 id: 'beepboxplayer',
                 name: 'BeepBox Player',
-                color1: "#7744FF",
-                color2: "#5F3BCC",
-                color3: "#5F3BCC",
+                color1: "#000000",
+                color2: "#7744FF",
+                color3: "#7744FF",
                 menuIconURI: icon,
                 blockIconURI: icon,
                 blocks: [

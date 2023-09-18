@@ -68,7 +68,7 @@
         }
         getInfo() {
             return {
-                id: 'beepboxplayer',
+                id: 'dogeiscutbeepboxplayer',
                 name: 'BeepBox Player',
                 color1: "#000000",
                 color2: "#7744FF",

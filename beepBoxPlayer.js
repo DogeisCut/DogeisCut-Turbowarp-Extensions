@@ -1,4 +1,4 @@
-(function(Scratch, beepbox) {
+(function(Scratch) {
     'use strict';
 
     if (!Scratch.extensions.unsandboxed) {
@@ -474,4 +474,4 @@
     }
 
     Scratch.extensions.register(new BeepBoxPlayer());
-})(Scratch, beepbox);
+})(Scratch);

@@ -7,6 +7,7 @@
 
     //So, i have to copy and paste the entire beepbox player code in here, as adding in scripts is not advised, it is... not pretty.
     //Also, the source code uses `new Function()` but it doesnt take user input. I cannot remove this.
+    /* eslint-disable*/
     var beepbox=function(e){"use strict";
 /*!
     Copyright (c) 2012-2022 John Nesky and contributing authors
@@ -33,6 +34,7 @@
 //# sourceMappingURL=beepbox_synth.min.js.map
 //the above minified code is a compiled version of https://github.com/DogeisCut/ultraabox-for-turbowarp/blob/main/synth/synth.ts
 //which is based on https://github.com/ultraabox/ultrabox_typescript/blob/main/synth/synth.ts
+/* eslint-enable*/
 
     console.log(beepbox)
 

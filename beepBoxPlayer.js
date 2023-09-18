@@ -363,10 +363,20 @@ var beepbox=function(e){"use strict";
             return synth.isPlayingSong
         }
 
+        isValidJSON(str) {
+            try {
+              JSON.parse(str);
+              return true;
+            } catch (error) {
+              return false;
+            }
+          }
+          
         setSong(args) {
             //let song = Scratch.Cast.toString(args.SONG).replace(/\\/g, '/').replace(/https:\/\/|jummbus\.bitbucket\.io|www\.beepbox\.co|ultraabox\.github\.io|\/#/g, '').replace(/[^A-Za-z0-9_]/g, '') //better safe than sorry
             //let song = Scratch.Cast.toString(args.SONG).replace(/.*?#/, "").replace(/[^A-Za-z0-9_\-()%!<>~"'.*]/g, ""); //if your song uses emojis, i dont care
-            let song = Scratch.Cast.toString(args.SONG).replace(/.*?#/, "")
+            let song = Scratch.Cast.toString(args.SONG)
+            song = isValidJSON(song) ? song : song.replace(/.*?#/, "")
             console.log("Loaded BeepBox Song: " + song)
             url = song;
             synth.setSong(song);

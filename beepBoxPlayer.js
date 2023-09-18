@@ -70,6 +70,11 @@ var beepbox=function(e){"use strict";
                         text: 'View Beta Warning',
                         func: 'betaWarning'
                     },
+                    {
+                        blockType: Scratch.BlockType.BUTTON,
+                        text: 'View Song Warning',
+                        func: 'regularWarning'
+                    },
                     '---',
                     {
                         opcode: 'current',
@@ -294,6 +299,10 @@ var beepbox=function(e){"use strict";
             alert('This extension is in beta. Currently, songs are uneffected by anything in the sounds tab, as well as the volume slider you can get with addons. \n\nThese behaviors may change in the future in the form of new blocks, so be warned.')
         }
 
+        regularWarning() {
+            alert('When setting your song, copy the song data URL, the whole URL, or use the contents JSON export. If the song is invalid, it will horribly break the project as there is no good way to check if a song is valid or not. \n\nTDLR: Make backups before setting a song.')
+        }
+
         current(args) {
             switch (args.WHAT) {
                 case 'song':
@@ -312,11 +321,11 @@ var beepbox=function(e){"use strict";
         setCurrentValue(args) {
             switch (args.WHAT) {
                 case 'bar':
-                    synth.bar = args.VALUE
+                    synth.bar = Math.min(Math.max(args.VALUE,0),synth.song.barCount)
                     synth.snapToBar();
                     break;
                 case 'beat':
-                    synth.beat = args.VALUE
+                    synth.beat = Math.min(Math.max(args.VALUE,0),synth.song.beatsPerBar)
                     synth.part = 0;
                     synth.tick = 0;
                     synth.tickSampleCountdown = 0;
@@ -342,7 +351,7 @@ var beepbox=function(e){"use strict";
         setSongValue(args) {
             switch (args.WHAT) {
                 case 'tempo':
-                    synth.song.tempo = Scratch.Cast.toNumber(args.VALUE)
+                    synth.song.tempo = Math.max(Scratch.Cast.toNumber(args.VALUE),0)
                     return;
                 case 'title':
                     synth.song.title = Scratch.Cast.toString(args.VALUE)
@@ -355,8 +364,12 @@ var beepbox=function(e){"use strict";
         }
 
         setSong(args) {
-            url = args.SONG
-            synth.setSong(args.SONG)
+            //let song = Scratch.Cast.toString(args.SONG).replace(/\\/g, '/').replace(/https:\/\/|jummbus\.bitbucket\.io|www\.beepbox\.co|ultraabox\.github\.io|\/#/g, '').replace(/[^A-Za-z0-9_]/g, '') //better safe than sorry
+            //let song = Scratch.Cast.toString(args.SONG).replace(/.*?#/, "").replace(/[^A-Za-z0-9_\-()%!<>~"'.*]/g, ""); //if your song uses emojis, i dont care
+            let song = Scratch.Cast.toString(args.SONG).replace(/.*?#/, "")
+            console.log("Loaded BeepBox Song: " + song)
+            url = song;
+            synth.setSong(song);
         }
 
         playSong(args) {
@@ -392,10 +405,10 @@ var beepbox=function(e){"use strict";
         }
 
         setSongVolume(args) {
-            synth.volume = Math.max(Math.min(args.VOLUME*2/100 * Scratch.vm.runtime.audioEngine.inputNode.gain.value,400),0)
+            synth.volume = Math.max(Math.min(args.VOLUME*2/100 * Scratch.vm.runtime.audioEngine.inputNode.gain.value,500),0)
         }
         changeSongVolume(args) {
-            synth.volume += Math.max(Math.min(args.VOLUME*2/100 * Scratch.vm.runtime.audioEngine.inputNode.gain.value,400),0)
+            synth.volume += Math.max(Math.min(args.VOLUME*2/100 * Scratch.vm.runtime.audioEngine.inputNode.gain.value,500),0)
         }
 
         disableLooping(args) {

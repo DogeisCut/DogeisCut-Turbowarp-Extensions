@@ -5,7 +5,10 @@
         throw new Error('\'BeepBox Player\' must run unsandboxed!');
     }
 
-    var beepbox=function(e){"use strict";
+    //So, i have to copy and paste the entire beepbox player code in here, as adding in scripts is not advised
+    //Also, the source code uses `new Function()` but it doesnt take user input, there is not a way i can figure out to
+    //make this code still work within the IIFE
+    var beepboxButWithAReallySpecificNameToHopefullyAvoidGlobalConflicts=function(e){"use strict";
 /*!
     Copyright (c) 2012-2022 John Nesky and contributing authors
 
@@ -31,12 +34,12 @@
 //# sourceMappingURL=beepbox_synth.min.js.map
 
 
-    console.log(beepbox)
+    console.log(beepboxButWithAReallySpecificNameToHopefullyAvoidGlobalConflicts)
 
     var url = "5sbk4l00e0ftaa7g0fj7i0r1w1100f0000d1110c0000h0000v2200o3320b4z8Ql6hkpUsiczhkp5hDxN8Od5hAl6u74z8Ql6hkpUsp24ZFzzQ1E39kxIceEtoV8s66138l1S0L1u2139l1H39McyaeOgKA0TxAU213jj0NM4x8i0o0c86ywz7keUtVxQk1E3hi6OEcB8Atl0q0Qmm6eCexg6wd50oczkhO8VcsEeAc26gG3E1q2U406hG3i6jw94ksf8i5Uo0dZY26kHHzxp2gAgM0o4d516ej7uegceGwd0q84czm6yj8Xa0Q1EIIctcvq0Q1EE3ihE8W1OgV8s46Icxk7o24110w0OdgqMOk392OEWhS1ANQQ4toUctBpzRxx1M0WNSk1I3ANMEXwS3I79xSzJ7q6QtEXgw0"
 
     let synths = []
-    var synth = new beepbox.Synth(url);
+    var synth = new beepboxButWithAReallySpecificNameToHopefullyAvoidGlobalConflicts.Synth(url);
     synths.push(synth);
     synth.volume = 2
 
@@ -46,6 +49,15 @@
     const runtime = vm.runtime;
 
     const icon = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAANeSURBVFhHxZddSFRREMdnd0UDMZV8MIpUIoIK+gCFCPKjgj4IJIgeKiJ6iMAHJaR6KXoIjB4MIh/ToCeJUCICqVyxhxSiIqEES0kIikSzD2vbdZv/7NzLveu517vbkj8Yd+aue2bOnHPmzA1RcEpYGllqWSpZ6licRFkmWAZYelhmWHICnHWyJDMU/Aa/9cUvA5jxJZZmsZQ9629QTUUTJdlFAm6YMI8SCRM9n7xFfW/O8PNY6osU11kusxgz4hXAFhbMAJ9UVLCaWuon6Xcc1uLkcTAdg+toem5Mn9BLlpP66cIUAJz2syAD1Nrwh8LhPKgZg8HbHtkukIF6FlcQHKsL23kkvIzO705m7Rxghc7xGPmRYpiYEMaWrFo4A8A/IO3i/Gz9TxkgFzTXTVNh/kqotg8YwBkANpxE19owR6GQ1/bIHIzVtPOjWuIDvgTLC47LOJQga977+gi9/dStVoq1ZQfo0OZePhERfbKQ+WSCrj22x65imbAyIBFht/s5j45doKu8qdKdg3dfHsjg90eO6ZOFILg1pdiHgvhEBrAe0zAu7k16HrX2aDHF4rNqLUaIN9+86m5wRK/02ctbigygvApezjHz4M5Bkrpf7FfdTdwdVyMCQG2XCufF0ESbasEZn3poLDLg1PYR1agWAUi9Rnk1gQ2XLR1PK1RzU1a4UTWqRAByq6G2mzBtuKDM/vqgmid1CECwLpb/jR3AUmEHgCt1KUAA6GTkPjeBCpctRQWrVHPjmGsUbtFGSTNhAuU1W07veK+am6kfo6qlSjF6OOlkTKB8big/qlZwypdXc1bz1XJze7haNRpAAGggpY1CmTRxcNMd/pvZJjlRM6yaG+y1WOKbWtQDl+hUumChjfICtb1qxT61vMHM0YR4ce/VYdXE54w1Lfs6RhfkVxLwA1S49CKDDYc190q7BW5TRa5jZ17bWaQD9pvBv+Bwjk65BYpz1dE6S8PY3l/CpTl3QWCszmdb1RIf8CU4A8BeQOs8E0t8pZuD5jOcDV1D2+jzd5mb7QMGcC6Bhbst3xX3bbMWw5F2Y1tuCgAgCPvFBG3U8eon6c2EJzhq2O2jn+/qE3Ea+MXEAhlY8GqGZsJxn9tgIFQ4FBnHOQe+r2ZBWLKX03SQkRy/nhP9BQw4Deb2HqWcAAAAAElFTkSuQmCC"
+    
+    function isValidJSON(str) {
+        try {
+          JSON.parse(str);
+          return true;
+        } catch (error) {
+          return false;
+        }
+      }
     
     class BeepBoxPlayer {
         constructor() {
@@ -364,15 +376,6 @@
             return synth.isPlayingSong
         }
 
-        isValidJSON(str) {
-            try {
-              JSON.parse(str);
-              return true;
-            } catch (error) {
-              return false;
-            }
-          }
-          
         setSong(args) {
             //let song = Scratch.Cast.toString(args.SONG).replace(/\\/g, '/').replace(/https:\/\/|jummbus\.bitbucket\.io|www\.beepbox\.co|ultraabox\.github\.io|\/#/g, '').replace(/[^A-Za-z0-9_]/g, '') //better safe than sorry
             //let song = Scratch.Cast.toString(args.SONG).replace(/.*?#/, "").replace(/[^A-Za-z0-9_\-()%!<>~"'.*]/g, ""); //if your song uses emojis, i dont care
@@ -433,7 +436,7 @@
         }
 
         createSynth(args) {
-            synth = new beepbox.Synth(url);
+            synth = new beepboxButWithAReallySpecificNameToHopefullyAvoidGlobalConflicts.Synth(url);
             synths.push(synth);
             synth.volume = 2
             targetSynth = synths.length-1
@@ -466,7 +469,7 @@
                 i = undefined
             }
             synths = []
-            synth = new beepbox.Synth(url);
+            synth = new beepboxButWithAReallySpecificNameToHopefullyAvoidGlobalConflicts.Synth(url);
             synths.push(synth);
             synth.volume = 2
        }

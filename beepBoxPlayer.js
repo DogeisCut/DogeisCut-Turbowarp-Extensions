@@ -21786,7 +21786,7 @@
               func: "regularWarning",
             },
             */
-          "---",
+          //"---",
           {
             opcode: "current",
             blockType: Scratch.BlockType.REPORTER,
